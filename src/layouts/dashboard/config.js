@@ -55,7 +55,7 @@ export const items = [
     )
   },
   {
-    title: 'Comapanies',
+    title: 'Companies',
     path: '/companies',
     icon: (
       <SvgIcon fontSize="small">
