@@ -20,7 +20,7 @@ export const items = [
   },
   {
     title: 'Tasks',
-    path: '/404',
+    path: '/tasks',
     icon: (
       <SvgIcon fontSize="small">
         <ChartBarIcon />
