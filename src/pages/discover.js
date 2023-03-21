@@ -5,6 +5,7 @@ import { CreateDAOModal } from "src/components/modal/create-dao";
 import { Pagination } from "src/components/pagination";
 import { useNear } from 'src/hooks/use-near';
 import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
+import { getDaoId } from "src/utils/utility";
 
 const itemsPerPage = 20;
 
@@ -26,6 +27,7 @@ const DiscoverPage = () => {
   }
 
   useEffect(() => {
+    console.log(factoryContract);
     if (factoryContract)
       fetchDaoList((currentPage - 1) * itemsPerPage + 1, itemsPerPage);
   }, [factoryContract])

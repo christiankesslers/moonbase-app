@@ -1,8 +1,7 @@
 export const Loading = () => {
   return (
-    <div className="absolute left-0 top-0 bg-black bg-opacity-60 z-10 h-full w-full flex items-center justify-center">
+    <div className="absolute left-0 top-0 bg-black bg-opacity-60 z-[9999] h-full w-full flex items-center justify-center">
       <div className="flex items-center justify-center">
-        <span className="text-3xl mr-4 text-white">Loading</span>
         <svg className="animate-spin h-8 w-8 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
           viewBox="0 0 24 24">
           <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>

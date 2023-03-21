@@ -1,13 +1,19 @@
-import { useCallback } from 'react';
+import { Box, Divider, MenuItem, MenuList, Popover, Typography } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import PropTypes from 'prop-types';
-import { Box, Divider, MenuItem, MenuList, Popover, Typography } from '@mui/material';
+import { useCallback } from 'react';
 import { useAuth } from 'src/hooks/use-auth';
+import { useNear } from 'src/hooks/use-near';
 
 export const AccountPopover = (props) => {
   const { anchorEl, onClose, open } = props;
   const router = useRouter();
   const auth = useAuth();
+  const { isConnected, accountId, handleConnect } = useNear();
+  
+  const handleConnectNear = () => {
+    handleConnect('Near');
+  }
 
   const handleSignOut = useCallback(
     () => {
@@ -56,6 +62,9 @@ export const AccountPopover = (props) => {
           }
         }}
       >
+        <MenuItem onClick={handleConnectNear}>
+          {isConnected ? accountId : 'Ⓝ Connect'}
+        </MenuItem>
         <MenuItem onClick={handleSignOut}>
           Sign out
         </MenuItem>
