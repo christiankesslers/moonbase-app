@@ -28,3 +28,5 @@ yarn install && yarn build
 ```
 yarn start
 ```
+
+your app is waiting for you at http://localhost:3000
