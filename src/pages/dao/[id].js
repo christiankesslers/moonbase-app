@@ -1,9 +1,11 @@
+import { SelectBox } from "@/components/selectbox";
+import { useDaoState } from "@/hooks/use-dao-state";
 import { ArrowLeftCircleIcon, ClockIcon, EnvelopeIcon, PlusCircleIcon } from "@heroicons/react/20/solid";
 import { HandThumbDownIcon, HandThumbUpIcon, TrashIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { Loading } from "src/components/loading";
-import { AddProposalModal } from "src/components/modal/add-proposal";
+import { CouncilModalType, CouncilProposalModal } from "src/components/modal/council-proposal";
 import { useNear } from "src/hooks/use-near";
 import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
 import { convertDuration, getDaoId, getUserAvatarId } from "src/utils/utility";
@@ -14,6 +16,16 @@ const colors = {
   'Expired': 'red'
 }
 
+const proposalType = {
+  ADD_COUNCIL_MEMBER: 1,
+  REMOVE_COUNCIL_MEMBER: 2
+}
+
+const proposalOptions = [
+  { id: proposalType.ADD_COUNCIL_MEMBER, title: 'Add Council Member', description: 'Adding a Council member to the DAO', current: false },
+  { id: proposalType.REMOVE_COUNCIL_MEMBER, title: 'Remove Council Member', description: 'Remove a Council Member from the DAO', current: false },
+]
+
 const DaoDetailPage = () => {
   const router = useRouter();
   const addr = router.query.id;
@@ -22,8 +34,10 @@ const DaoDetailPage = () => {
   const [daoConfig, setDaoConfig] = useState(null);
   const [daoProposals, setDaoProposals] = useState(null);
   const [daoPolicy, setDaoPolicy] = useState(null);
-  const [isModalOpen, setModalOpen] = useState(false);
+  const [isCouncilAddModalOpen, setCouncilAddModalOpen] = useState(false);
+  const [isCouncilRemoveModalOpen, setCouncilRemoveModalOpen] = useState(false);
   const [isLoading, setLoading] = useState(true);
+  const [daoFunds] = useDaoState(addr);
 
   const getInfos = async () => {
     if (!addr || daoConfig != null) return;
@@ -41,6 +55,13 @@ const DaoDetailPage = () => {
   useEffect(() => {
     getInfos();
   }, [getDaoContract])
+
+  const handleAddProposal = (option) => {
+    switch (option.id) {
+      case proposalType.ADD_COUNCIL_MEMBER: setCouncilAddModalOpen(true); break;
+      case proposalType.REMOVE_COUNCIL_MEMBER: setCouncilRemoveModalOpen(true); break;
+    }
+  }
 
   const handleBack = () => {
     router.push('/discover');
@@ -61,14 +82,15 @@ const DaoDetailPage = () => {
                 <p className="mt-1 max-w-2xl text-sm text-gray-500">{addr}</p>
               </div>
             </div>
-            <button
+            {/* <button
               type="button"
               className="inline-flex items-center gap-x-1.5 rounded-md bg-indigo-600 py-1.5 px-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              onClick={() => setModalOpen(true)}
+              onClick={() => setCouncilAddModalOpen(true)}
             >
               Add Proposal
               <PlusCircleIcon className="-mr-0.5 h-5 w-5" aria-hidden="true" />
-            </button>
+            </button> */}
+            <SelectBox title="Add Proposal" label="Adding Proposal to the DAO" options={proposalOptions} addProposal={handleAddProposal} />
           </div>
         </div>
         <div className="border-t border-gray-200">
@@ -76,6 +98,10 @@ const DaoDetailPage = () => {
             <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-12 sm:px-6">
               <dt className="text-sm font-medium text-gray-500">Name</dt>
               <dd className="mt-1 text-sm text-gray-900 sm:col-span-11 sm:mt-0">{daoConfig?.name}</dd>
+            </div>
+            <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-12 sm:px-6">
+              <dt className="text-sm font-medium text-gray-500">Dao Funds</dt>
+              <dd className="mt-1 text-sm text-gray-900 sm:col-span-11 sm:mt-0">Ⓝ {daoFunds}</dd>
             </div>
             <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-12 sm:px-6">
               <dt className="text-sm font-medium text-gray-500">Purpose</dt>
@@ -155,7 +181,19 @@ const DaoDetailPage = () => {
                   <span className="bg-green-100 text-green-800"></span>
                   <span className="bg-blue-100 text-blue-800"></span>
                   <span className="bg-red-100 text-red-800"></span>
-                  <AddProposalModal proposalBond={daoPolicy?.proposal_bond} addr={addr} open={isModalOpen} setOpen={setModalOpen} />
+
+                  <CouncilProposalModal
+                    addr={addr}
+                    open={isCouncilAddModalOpen}
+                    setOpen={setCouncilAddModalOpen}
+                    proposalBond={daoPolicy?.proposal_bond} />
+
+                  <CouncilProposalModal
+                    addr={addr}
+                    open={isCouncilRemoveModalOpen}
+                    setOpen={setCouncilRemoveModalOpen}
+                    proposalBond={daoPolicy?.proposal_bond}
+                    councilType={CouncilModalType.REMOVE} />
                 </div>
               </dd>
             </div>

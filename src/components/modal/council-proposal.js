@@ -4,7 +4,12 @@ import { Fragment, useRef } from 'react';
 import { useNear } from 'src/hooks/use-near';
 import { yoktoNear } from 'src/utils/utility';
 
-export const AddProposalModal = ({ addr, proposalBond, open, setOpen }) => {
+export const CouncilModalType = {
+  ADD: 1,
+  REMOVE: 2
+};
+
+export const CouncilProposalModal = ({ addr, proposalBond, open, setOpen, councilType = CouncilModalType.ADD }) => {
   const cancelButtonRef = useRef(null)
   const { getDaoContract } = useNear();
   const councilRef = useRef(null);
@@ -15,21 +20,39 @@ export const AddProposalModal = ({ addr, proposalBond, open, setOpen }) => {
     const council = councilRef.current.value;
     const description = descRef.current.value;
     console.log(proposalBond.toString());
-    await contract.add_proposal(
-      {
-        proposal: {
-          description: description.trim(),
-          kind: {
-            AddMemberToRole: {
-              member_id: council,
-              role: 'council'
+    if(councilType == CouncilModalType.ADD) {
+      await contract.add_proposal(
+        {
+          proposal: {
+            description: description.trim(),
+            kind: {
+              AddMemberToRole: {
+                member_id: council,
+                role: 'council'
+              }
             }
           }
-        }
-      },
-      BigInt('30000000000000').toString(),
-      proposalBond.toString()
-    );
+        },
+        BigInt('30000000000000').toString(),
+        proposalBond.toString()
+      );
+    } else {
+      await contract.add_proposal(
+        {
+          proposal: {
+            description: description.trim(),
+            kind: {
+              RemoveMemberFromRole: {
+                member_id: council,
+                role: 'council'
+              }
+            }
+          }
+        },
+        BigInt('30000000000000').toString(),
+        proposalBond.toString()
+      );
+    }
   }
 
   return (
@@ -66,7 +89,7 @@ export const AddProposalModal = ({ addr, proposalBond, open, setOpen }) => {
                     </div>
                     <div className="mt-3 flex-1 text-center sm:mt-0 sm:ml-4 sm:text-left">
                       <Dialog.Title as="h3" className="text-base font-semibold leading-6 text-gray-900">
-                        Add Council Member
+                        {councilType == CouncilModalType.ADD ? 'Add' : 'Remove'} {' '} Council Member
                       </Dialog.Title>
                       <div>
                         <div className="mt-2">
