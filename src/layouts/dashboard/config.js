@@ -1,3 +1,4 @@
+import { BriefcaseIcon } from '@heroicons/react/24/outline';
 import ChartBarIcon from '@heroicons/react/24/solid/ChartBarIcon';
 import CogIcon from '@heroicons/react/24/solid/CogIcon';
 import LockClosedIcon from '@heroicons/react/24/solid/LockClosedIcon';
@@ -20,10 +21,19 @@ export const items = [
   },
   {
     title: 'Tasks',
-    path: '/404',
+    path: '/tasks',
     icon: (
       <SvgIcon fontSize="small">
         <ChartBarIcon />
+      </SvgIcon>
+    )
+  },
+  {
+    title: 'Discover',
+    path: '/discover',
+    icon: (
+      <SvgIcon fontSize="small">
+        <BriefcaseIcon />
       </SvgIcon>
     )
   },
