@@ -74,7 +74,7 @@ export const items = [
     )
   },
   {
-    title: 'Trash',
+    title: 'Archive',
     path: '/404',
     icon: (
       <SvgIcon fontSize="small">
