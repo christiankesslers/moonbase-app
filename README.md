@@ -1,7 +1,5 @@
 # moonbase.app
 
-![image](https://media.discordapp.net/attachments/1047007258237743165/1087957535371296788/image.png)
-
 It's as easy as 1-2-3-4.
 
 1) To create a local production enviorment, 
@@ -30,3 +28,5 @@ yarn start
 ```
 
 & then the app is ready at http://localhost:3000
+
+![image](https://media.discordapp.net/attachments/1047007258237743165/1087957535371296788/image.png)
