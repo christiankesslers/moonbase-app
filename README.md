@@ -2,26 +2,28 @@
 
 ![image](https://media.discordapp.net/attachments/1047007258237743165/1087957535371296788/image.png)
 
+It's as easy as 1-2-3-4.
 
-To create a local production enviorment, first download it to your machine:
+1) To create a local production enviorment, 
+first download it to your machine:
 
 ```
 git clone https://github.com/moonbasedao/moonbase-app.git
 ```
 
-Go into the file directory:
+2) Go into the file directory:
 
 ```
 cd moonbase-app
 ```
 
-After opening the folder in your cmd line or IDE, open a terminal and type:
+3) After opening the folder in your cmd line or IDE, open a terminal and type:
 
 ```
 yarn install && yarn build
 ```
 
-After installation finishes, initiate a production build with:
+4) After installation finishes, initiate a production build with:
 
 ```
 yarn start
