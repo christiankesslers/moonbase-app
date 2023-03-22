@@ -19,8 +19,8 @@ export const items = [
     )
   },
   {
-    title: 'Projects',
-    path: '/projects',
+    title: 'Tasks',
+    path: '/404',
     icon: (
       <SvgIcon fontSize="small">
         <ChartBarIcon />
@@ -28,8 +28,8 @@ export const items = [
     )
   },
   {
-    title: 'Tasks',
-    path: '/tasks',
+    title: 'Today',
+    path: '/customers',
     icon: (
       <SvgIcon fontSize="small">
         <UsersIcon />
@@ -37,8 +37,8 @@ export const items = [
     )
   },
   {
-    title: 'Teams',
-    path: '/teams',
+    title: 'Upcoming',
+    path: '/404',
     icon: (
       <SvgIcon fontSize="small">
         <ShoppingBagIcon />
@@ -46,8 +46,35 @@ export const items = [
     )
   },
   {
-    title: 'DAO',
-    path: '/dao',
+    title: 'Important',
+    path: '/account',
+    icon: (
+      <SvgIcon fontSize="small">
+        <UserIcon />
+      </SvgIcon>
+    )
+  },
+  {
+    title: 'Companies',
+    path: '/companies',
+    icon: (
+      <SvgIcon fontSize="small">
+        <UserIcon />
+      </SvgIcon>
+    )
+  },
+  {
+    title: 'Trash',
+    path: '/404',
+    icon: (
+      <SvgIcon fontSize="small">
+        <UserIcon />
+      </SvgIcon>
+    )
+  },
+  {
+    title: 'Dao',
+    path: '/account',
     icon: (
       <SvgIcon fontSize="small">
         <UserIcon />
@@ -59,34 +86,34 @@ export const items = [
     path: '/settings',
     icon: (
       <SvgIcon fontSize="small">
-        <UserIcon />
-      </SvgIcon>
-    )
-  },
-  {
-    title: 'Bounties (Coming Soon)',
-    path: '/bounties',
-    icon: (
-      <SvgIcon fontSize="small">
-        <UserIcon />
-      </SvgIcon>
-    )
-  },
-  {
-    title: 'Integrations (Coming Soon)',
-    path: '/integrations',
-    icon: (
-      <SvgIcon fontSize="small">
-        <UserIcon />
-      </SvgIcon>
-    )
-  },
-  {
-    title: 'Messaging (Coming Soon)',
-    path: '/messaging',
-    icon: (
-      <SvgIcon fontSize="small">
         <CogIcon />
+      </SvgIcon>
+    )
+  },
+  {
+    title: 'Login',
+    path: '/auth/login',
+    icon: (
+      <SvgIcon fontSize="small">
+        <LockClosedIcon />
+      </SvgIcon>
+    )
+  },
+  {
+    title: 'Register',
+    path: '/auth/register',
+    icon: (
+      <SvgIcon fontSize="small">
+        <UserPlusIcon />
+      </SvgIcon>
+    )
+  },
+  {
+    title: 'Error',
+    path: '/404',
+    icon: (
+      <SvgIcon fontSize="small">
+        <XCircleIcon />
       </SvgIcon>
     )
   }
