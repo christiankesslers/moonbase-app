@@ -51,7 +51,7 @@ const Page = () => (
           >
             <OverviewTotalCustomers
               difference={16}
-              positive={false}
+              positive={true}
               sx={{ height: '100%' }}
               value="1.6k"
             />
@@ -73,7 +73,7 @@ const Page = () => (
           >
             <OverviewTotalProfit
               sx={{ height: '100%' }}
-              value="$15k"
+              value="27"
             />
           </Grid>
           <Grid
