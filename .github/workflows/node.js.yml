@@ -28,4 +28,4 @@ jobs:
         cache: 'npm'
     - run: npm install yarn 
     - run: yarn
-    - run: yarn dev --if-present
+    - run: yarn dev
