@@ -1,7 +1,7 @@
 {
-  "name": "material-kit-react",
-  "version": "3.0.0",
-  "author": "Devias",
+  "name": "moonbase-app",
+  "version": "0.0.1",
+  "author": "MoonBaseDAO",
   "licence": "MIT",
   "private": false,
   "scripts": {
